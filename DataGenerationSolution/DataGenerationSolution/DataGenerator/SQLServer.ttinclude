@@ -21,15 +21,12 @@
     const string ConnectionStringName = "DataGeneratorTable";
 	const string ConnectionString = @"Data Source=miltonpc\sqlexpress;Initial Catalog=DataGeneratorTable;user id=sa; password=smabm";
     
-    //This is the name of your database and is used in naming
-    //the repository. By default we set it to the connection string name
-    const string DatabaseName = "QStudy";
-
     //this is a list of tables you don't want generated
     string[] ExcludeTables = new string[]{
     "sysdiagrams",
     "BuildVersion",
     };
+	
 	string KeyColumnsValues(string tableName, IEnumerable<Column> keyColumns)
 	{
 		return string.Join(",", keyColumns.Select(key=>string.Format("{0}.{1}",tableName.ToLower(),key.CleanName)).ToArray());
@@ -47,67 +44,7 @@
 		return false;
 	}
 	
-	string DefaultSortDefinition(Table tbl)
-	{
-		string getColumns = string.Join(" , " , tbl.Columns.Where(p=> p.IsPK == true).Select(p=>p.CleanName));
-		return string.Format("ORDER BY {0}", getColumns);
-	}
-	 string SelectColumnsQuery(Table tbl)
-		{
-		  
-			 string getColumns = tbl.Columns.Aggregate("", (running, column) =>running + " , " + column.CleanName);
-		     return getColumns.Substring(2);
-		}
-		
-		string InsertColumnQuery(Table tbl)
-		{
-			 string getColumns = string.Join(" , " , tbl.Columns.Where(p=> p.IsPK == false).Select(p=>p.CleanName));
-		     return getColumns;
-		}
-		string insertValueQuery(Table tbl)
-		{
-			 string getColumns = tbl.Columns.Where(p=> p.IsPK == false).Aggregate("", (running, column) =>running + " , @" + column.CleanName);
-		     return getColumns.Substring(2);
-		}
-		
-	string WhereClause(Table tbl)
-		{
-			string whereClause = string.Empty;
-			int i=0;
-			foreach(Column col in tbl.Columns)
-			{
-				if(col.IsPK == true)
-				{
-					if(i>0) whereClause =" AND ";
-					whereClause  = whereClause + " " + col.CleanName + " = " + "@" + col.CleanName;
-					i++;
-				}
-				
-				
-			}
 			
-			return whereClause;
-		}
-		
-		string SetClause(Table tbl)
-		{
-			string setClause = string.Empty;
-			int i=0;
-			foreach(Column col in tbl.Columns)
-			{
-				if(col.IsPK == false)
-				{
-					if(i>0) setClause =setClause +  " , ";
-					setClause  = setClause + " " + col.CleanName + " = " + "@" + col.CleanName;
-					i++;
-				}
-				
-				
-			}
-			
-			return setClause;
-		}
-		
 	IDataReader GetReader(string sql){
 	
     SqlConnection conn=new SqlConnection(ConnectionString);
@@ -508,6 +445,7 @@ DbType GetDbType(string sqlType){
         public string SysType;
         public string DbType;
     }
+	
 /*
  * SubSonic - http://subsonicproject.com
  * 
