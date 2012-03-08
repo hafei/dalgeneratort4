@@ -26,7 +26,7 @@ public class StateDao
       
         public StateDao()
         {
-            _database = DatabaseFactory.CreateDatabase("QStudyDB");
+            _database = DatabaseFactory.CreateDatabase("DataGeneratorTable");
         }
 
         public StateDao(Database database)
@@ -99,6 +99,37 @@ public class StateDao
                                        ", _columnCollectionSelectString, string.Format("{0} = @{0}",IdentityColumn));
             return sql;
         }
+				public State GetStateByKey(State state)
+        {
+            return _database.CreateSqlStringAccessor<State>(GetStateByKeySQL(), new StateSelectKeyParameterMapper()).Execute(state.Id).SingleOrDefault();
+		}
+		
+		private string GetStateByKeySQL()
+        {
+            var sql = string.Format(@"SELECT  {0}
+                            FROM 
+                                States
+                            WHERE
+                                {1}
+                                       ", _columnCollectionSelectString, WhereClause);
+            return sql;
+        }
+		
+		public class StateSelectKeyParameterMapper : IParameterMapper
+        {
+            public void AssignParameters(DbCommand command, object[] parameterValues)
+            {
+                for (int i = 0; i < KeyColumns.Count(); i++)
+                {
+                    var parameter = command.CreateParameter();
+                    parameter.ParameterName = string.Format("@{0}", KeyColumns[i]);
+                    parameter.Value = parameterValues[i];
+                    command.Parameters.Add(parameter);
+                }
+               
+
+            }
+		}
 		        public long Insert(State state)
         { 			
 			var command = _database.GetSqlStringCommand(InsertStateSQL());
@@ -246,7 +277,7 @@ public class CountryDao
       
         public CountryDao()
         {
-            _database = DatabaseFactory.CreateDatabase("QStudyDB");
+            _database = DatabaseFactory.CreateDatabase("DataGeneratorTable");
         }
 
         public CountryDao(Database database)
