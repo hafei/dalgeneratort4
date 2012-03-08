@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGenerator", "DataGenerator\DataGenerator.csproj", "{623CA0A5-4D34-4980-8E1E-9D7F08E8581F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DG.Common", "DG.Common\DG.Common.csproj", "{DBB51E26-33C1-47D1-9D99-01200EC8AA47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataGeneratorTest1", "DataGeneratorTest1\DataGeneratorTest1.csproj", "{366E3818-863D-44AA-BB43-0E35BBE69DC8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{623CA0A5-4D34-4980-8E1E-9D7F08E8581F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{623CA0A5-4D34-4980-8E1E-9D7F08E8581F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{623CA0A5-4D34-4980-8E1E-9D7F08E8581F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{623CA0A5-4D34-4980-8E1E-9D7F08E8581F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DBB51E26-33C1-47D1-9D99-01200EC8AA47}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DBB51E26-33C1-47D1-9D99-01200EC8AA47}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DBB51E26-33C1-47D1-9D99-01200EC8AA47}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DBB51E26-33C1-47D1-9D99-01200EC8AA47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{366E3818-863D-44AA-BB43-0E35BBE69DC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{366E3818-863D-44AA-BB43-0E35BBE69DC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{366E3818-863D-44AA-BB43-0E35BBE69DC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{366E3818-863D-44AA-BB43-0E35BBE69DC8}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
